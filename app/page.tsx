@@ -105,7 +105,7 @@ export default function Home() {
               Post a Project
             </Link>
             <Link
-              href="#"
+              href="/dashboard/seller"
               className="px-6 py-3 border border-white text-base font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-800"
             >
               Browse Projects
@@ -114,7 +114,7 @@ export default function Home() {
         ) : role === 'SELLER' ? (
           <div className="flex justify-center">
             <Link
-              href="#"
+              href="/dashboard/seller"
               className="px-6 py-3 border border-white text-base font-medium rounded-md text-white bg-indigo-700 hover:bg-indigo-800"
             >
               Browse Projects
@@ -209,7 +209,7 @@ export default function Home() {
 
           <div className="text-center mt-10">
             <Link
-              href="#"
+              href="/dashboard/seller"
               className="px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
             >
               View All Projects
