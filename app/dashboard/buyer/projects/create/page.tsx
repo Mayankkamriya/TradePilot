@@ -39,7 +39,7 @@ export default function CreateProject() {
     try {
       const token = getAuthToken();
       if(!token) return;
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/projects`, {
+      const response = await fetch('/api/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

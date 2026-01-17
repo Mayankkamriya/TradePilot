@@ -42,7 +42,7 @@ interface UserDetails {
 
 // API function to get user details
 const getUserDetails = async (token: string): Promise<UserDetails> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/details`, {
+  const response = await fetch('/api/auth/me', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
