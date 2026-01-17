@@ -29,11 +29,10 @@ interface Bid {
 
 export default function BuyerProjectDetail() {
   const { id } = useParams<{ id: string }>();
-
+const router = useRouter();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const router = useRouter();
   useEffect(() => {
     if (!id) return;
 
