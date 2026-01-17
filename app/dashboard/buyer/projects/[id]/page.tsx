@@ -1,6 +1,7 @@
 'use client';
 import { useParams,useRouter } from 'next/navigation';
 import StatusBadge from '../../../../../components/StatusBadge';
+import SelectBidButton from '../../../../../components/SelectBidButton';
 import { useEffect, useState } from 'react';
 import { getProjects } from '../../../../api/projectApi';
 import { toast } from 'react-toastify';
@@ -210,6 +211,14 @@ const router = useRouter();
                       <h4 className="text-sm font-medium text-gray-900 mb-1">Message</h4>
                       <p className="text-gray-700">{bid.message}</p>
                     </div>
+                    {project.status === 'PENDING' && !project.selectedBid && (
+                      <div className="mt-4 flex justify-end">
+                        <SelectBidButton
+                          bidId={bid.id}
+                          onSelect={handleSelectBid}
+                        />
+                      </div>
+                    )}
                     {project.selectedBid === bid.id && (
                       <div className="mt-4 flex justify-end">
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
