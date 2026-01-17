@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import AuthModal from '../AuthModal';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 interface UserData {
   id: string;
@@ -15,6 +15,7 @@ interface UserData {
 
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authType, setAuthType] = useState<'login' | 'register'>('login');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -61,7 +62,7 @@ export default function Navbar() {
 
   window.addEventListener('storage', handleStorageChange);
   return () => window.removeEventListener('storage', handleStorageChange);
-}, [router.pathname]);
+}, [pathname]);
 
   const toggleMobileMenu = () => {
     if (!isMobileMenuOpen) {
@@ -102,7 +103,7 @@ export default function Navbar() {
 
   // Helper function to determine active route
   const isActive = (path: string) => {
-    return router.pathname === path;
+    return pathname === path;
   };
 
   // Helper function to check if user can see buyer dashboard
