@@ -124,7 +124,7 @@ export default function Home() {
           // Show both buttons when no role is set (user not authenticated)
           <div className="flex justify-center space-x-4">
             <Link
-              href="#"
+              href="/dashboard/buyer/projects/create"
               className="px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-gray-100"
             >
               Post a Project
