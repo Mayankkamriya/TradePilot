@@ -1,3 +1,5 @@
+// schema.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -16,35 +18,85 @@ model User {
   role      Role
   createdAt DateTime @default(now())
 
+  // Relations
   projectsCreated Project[] @relation("BuyerProjects")
-  bids            Bid[]
   projectsTaken   Project[] @relation("SellerProjects")
+  bids            Bid[]
 }
 
 model Project {
-  id        String   @id @default(uuid())
-  title     String
-  buyerId   String
-  buyer     User     @relation("BuyerProjects", fields: [buyerId], references: [id])
+  id          String        @id @default(uuid())
+  title       String
+  description String
+  budgetMin   Float
+  budgetMax   Float
+  deadline    DateTime
+  status      ProjectStatus @default(PENDING)
 
-  sellerId  String?
-  seller    User?    @relation("SellerProjects", fields: [sellerId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  bids      Bid[]
+  // Buyer
+  buyerId     String
+  buyer       User   @relation("BuyerProjects", fields: [buyerId], references: [id])
+
+  // Seller (optional until selected)
+  sellerId    String?
+  seller      User?  @relation("SellerProjects", fields: [sellerId], references: [id])
+
+  // Bid selection
+  selectedBid String?
+
+  // Completion document
+  completionDocumentUrl  String?
+  completionDocumentName String?
+  completionDocumentSize Int?
+  documentUploadedAt     DateTime?
+
+  // Relations
+  bids         Bid[]
+  deliverables Deliverable[]
 }
 
 model Bid {
-  id        String   @id @default(uuid())
-  amount    Float
+  id            String     @id @default(uuid())
+  amount        Float
+  estimatedTime String
+  message       String
+  bidStatus     BidStatus  @default(SUBMITTED)
+  sellerName    String     @default("Unknown")
+  createdAt     DateTime   @default(now())
 
-  projectId String
-  project   Project @relation(fields: [projectId], references: [id])
+  // Relations
+  sellerId      String
+  seller        User       @relation(fields: [sellerId], references: [id])
 
-  sellerId  String
-  seller    User    @relation(fields: [sellerId], references: [id])
+  projectId     String
+  project       Project    @relation(fields: [projectId], references: [id])
+}
+
+model Deliverable {
+  id          String   @id @default(uuid())
+  fileUrl     String
+  submittedAt DateTime @default(now())
+
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id])
 }
 
 enum Role {
   BUYER
   SELLER
+}
+
+enum ProjectStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum BidStatus {
+  SUBMITTED
+  SELECTED
+  COMPLETED
 }
