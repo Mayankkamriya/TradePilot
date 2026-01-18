@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { uploadToCloudinary } from "@/lib/utils/cloudinary";
+import { Prisma } from "@prisma/client";
 
 export async function updateProjectStatus(
   projectId: string,
@@ -7,8 +8,8 @@ export async function updateProjectStatus(
   bidId?: string,
   fileBase64?: string
 ) {
-  const validStatuses = ["PENDING", "IN_PROGRESS", "COMPLETED"];
-  if (!validStatuses.includes(status)) {
+  const validStatuses = ["PENDING", "IN_PROGRESS", "COMPLETED"] as const;
+  if (!validStatuses.includes(status as any)) {
     throw new Error("Invalid status value");
   }
 
@@ -18,7 +19,8 @@ export async function updateProjectStatus(
     fileData = await uploadToCloudinary(fileBase64);
   }
 
-  const result = await prisma.$transaction(async (tx) => {
+  const result = await prisma.$transaction(
+async (tx: Prisma.TransactionClient) => {
     const updateData: any = {
       status,
       selectedBid: bidId ?? null,
@@ -35,7 +37,7 @@ export async function updateProjectStatus(
       where: { id: projectId },
       data: updateData,
       include: {
-        bids: true,
+        bids: true
       },
     });
 
