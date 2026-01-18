@@ -42,19 +42,20 @@ export default function BidForm({ projectId, onBidSubmitted }: BidFormProps) {
     }
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/bids`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          projectId,
-          amount: parseFloat(formData.amount),
-          estimatedTime: formData.estimatedTime,
-          message: formData.message,
-        }),
-      });
+    
+const response = await fetch("/api/bids", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify({
+    projectId,
+    amount: Number(formData.amount),
+    estimatedTime: formData.estimatedTime,
+    message: formData.message,
+  }),
+});
 
       if (response.ok) {
         toast.success('Bid submitted successfully!');

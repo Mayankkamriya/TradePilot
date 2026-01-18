@@ -40,7 +40,7 @@ export default function AuthModal({ isOpen, onClose, type, onTypeChange }: AuthM
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/requestotp", {
+      const response = await fetch("/api/auth/request-otp", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export default function AuthModal({ isOpen, onClose, type, onTypeChange }: AuthM
     setIsVerifying(true);
 
     try {
-      const response = await fetch("/api/verifyotp", {
+      const response = await fetch("/api/auth/verify-otp", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
