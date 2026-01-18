@@ -318,7 +318,7 @@ export default function AuthModal({ isOpen, onClose, type, onTypeChange }: AuthM
                     onChange={() => setFormData({ ...formData, userType: 'buyer' })}
                     disabled={otpSent}
                   />
-                  <span className="ml-2 text-gray-700">Buyer</span>
+                  <span className="ml-2 text-gray-700">Client</span>
                 </label>
                 <label className="inline-flex items-center cursor-pointer">
                   <input
@@ -330,7 +330,7 @@ export default function AuthModal({ isOpen, onClose, type, onTypeChange }: AuthM
                     onChange={() => setFormData({ ...formData, userType: 'seller' })}
                     disabled={otpSent}
                   />
-                  <span className="ml-2 text-gray-700">Seller</span>
+                  <span className="ml-2 text-gray-700">Freelancer</span>
                 </label>
               </div>
             </div>

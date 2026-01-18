@@ -15,8 +15,8 @@ export default function AboutUsPage() {
           </p>
 
           <p className="text-gray-700 mb-4 leading-relaxed">
-            We focus on clarity, transparency, and efficiency. Buyers can post
-            projects with clear budgets and timelines, while sellers can bid
+            We focus on clarity, transparency, and efficiency. Clients can post
+            projects with clear budgets and timelines, while freelancers can bid
             confidently knowing exactly what is expected. Every step — from
             bidding to completion — is tracked and visible.
           </p>
@@ -28,7 +28,7 @@ export default function AboutUsPage() {
           <ul className="list-disc list-inside text-gray-700 space-y-2">
             <li>Unclear project requirements and timelines</li>
             <li>Lack of transparency in bidding and selection</li>
-            <li>Difficult communication between buyers and sellers</li>
+            <li>Difficult communication between clients and freelancers</li>
             <li>No clear flow for project completion and delivery</li>
           </ul>
 
@@ -37,10 +37,10 @@ export default function AboutUsPage() {
           </h2>
 
           <ol className="list-decimal list-inside text-gray-700 space-y-2">
-            <li>Buyers create projects with budgets and deadlines</li>
-            <li>Sellers place bids with timelines and proposals</li>
-            <li>Buyers select a bid and move the project forward</li>
-            <li>Sellers deliver work and mark the project as completed</li>
+            <li>Clients create projects with budgets and deadlines</li>
+            <li>Freelancers place bids with timelines and proposals</li>
+            <li>Clients select a bid and move the project forward</li>
+            <li>Freelancers deliver work and mark the project as completed</li>
           </ol>
 
           <h2 className="text-xl font-semibold text-gray-900 mt-8 mb-3">

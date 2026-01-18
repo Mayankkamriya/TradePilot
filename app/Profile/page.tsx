@@ -574,7 +574,7 @@ const submitCompletion = async (bidId: string, projectId: string) => {
                           <span className="font-medium">Estimated Time:</span> {bid.estimatedTime}
                         </p>
                         <p className="text-sm text-gray-600 mb-2">
-                          <span className="font-medium">Seller:</span> {bid.sellerName}
+                          <span className="font-medium">Freelancer:</span> {bid.sellerName}
                         </p>
                         {bid.message && (
                           <p className="text-sm text-gray-700 bg-gray-100 p-2 rounded">
@@ -665,7 +665,7 @@ const submitCompletion = async (bidId: string, projectId: string) => {
               <p className="mt-2 text-gray-500">
                 {user.role === 'SELLER' 
                   ? 'Start bidding on projects to build your portfolio and showcase your skills.'
-                  : 'Create your first project to find talented sellers and get your work done.'
+                  : 'Create your first project to find talented freelancers and get your work done.'
                 }
               </p>
               <div className="mt-6">

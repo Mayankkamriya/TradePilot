@@ -30,7 +30,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">3. Project and Bidding Rules</h2>
             <p className="text-gray-600 leading-relaxed">
-              Buyers must provide accurate project descriptions. Sellers must submit honest bids and 
+              Clients must provide accurate project descriptions. Freelancers must submit honest bids and 
               deliver work as promised. Both parties agree to communicate professionally and resolve 
               disputes in good faith.
             </p>

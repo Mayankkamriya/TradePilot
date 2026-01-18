@@ -187,7 +187,7 @@ export default function Home() {
               {
                 step: '1',
                 title: 'Post or Browse',
-                description: 'Buyers post projects with requirements. Sellers browse available projects.',
+                description: 'Clients post projects with requirements. Freelancers browse available projects.',
                 icon: (
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -198,7 +198,7 @@ export default function Home() {
               {
                 step: '2',
                 title: 'Bid or Select',
-                description: 'Sellers place bids on projects. Buyers review bids and select the best fit.',
+                description: 'Freelancers place bids on projects. Clients review bids and select the best fit.',
                 icon: (
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -248,7 +248,7 @@ export default function Home() {
               Featured Projects
             </h2>
             <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Check out some of the latest projects posted by buyers
+              Check out some of the latest projects posted by clients
             </p>
           </div>
 
