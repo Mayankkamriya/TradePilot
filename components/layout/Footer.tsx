@@ -47,11 +47,11 @@ const Footer = () => {
                   Contact
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/Profile" className="cursor-pointer text-gray-300 hover:text-white">
                   Profile
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
