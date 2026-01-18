@@ -53,17 +53,38 @@ export default function AuthModal({ isOpen, onClose, type, onTypeChange }: AuthM
         })
       });
 
-      const data = await response.json();
-
+      // Handle non-OK responses
       if (!response.ok) {
-        toast.error(data.message || 'Failed to send OTP');
+        let errorMessage = 'Failed to send OTP';
+        
+        try {
+          const data = await response.json();
+          errorMessage = data.message || errorMessage;
+        } catch {
+          // Response body might not be JSON
+        }
+        
+        if (response.status === 409) {
+          toast.error('This email is already registered. Please login instead.');
+          onTypeChange('login');
+        } else if (response.status === 400) {
+          toast.error(errorMessage);
+        } else {
+          toast.error(errorMessage);
+        }
+        return;
       }
 
-      toast.success('OTP sent to your email');
+      const data = await response.json();
+      toast.success(data.message || 'OTP sent to your email');
       setOtpSent(true);
     } catch (error) {
       const err = error as Error;
-      toast.error(err.message || 'Failed to send OTP. Please try again.');
+      if (err.message === 'Failed to fetch') {
+        toast.error('Unable to connect to server. Please check your connection.');
+      } else {
+        toast.error(err.message || 'Failed to send OTP. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -91,18 +112,22 @@ export default function AuthModal({ isOpen, onClose, type, onTypeChange }: AuthM
         })
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        toast.error(data.message || 'OTP verification failed');
+        const errorData = await response.json();
+        toast.error(errorData.message || 'OTP verification failed');
+        return;
       }
 
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('role', data.user.role);
+      const data = await response.json();
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { password, ...userWithoutPassword } = data.user;
-      localStorage.setItem('user', JSON.stringify(userWithoutPassword));
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('role', data.user?.role || '');
+
+      if (data.user) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { password, ...userWithoutPassword } = data.user;
+        localStorage.setItem('user', JSON.stringify(userWithoutPassword));
+      }
 
       window.dispatchEvent(new Event('storage'));
 
@@ -200,7 +225,7 @@ export default function AuthModal({ isOpen, onClose, type, onTypeChange }: AuthM
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">
+          <h2 className="text-xl font-bold text-gray-900">
             {type === 'login' ? 'Login' : 'Register'}
           </h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700 text-4xl cursor-pointer">

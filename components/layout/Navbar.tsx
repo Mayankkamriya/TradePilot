@@ -86,7 +86,7 @@ export default function Navbar() {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
     setUser(null);
-    toast.success('Logged out successfully');
+    toast.success('Logout successfully');
     router.push('/');
   };
 
