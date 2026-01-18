@@ -63,9 +63,43 @@ export async function getUserDetails(userId: string) {
       email: true,
       role: true,
       createdAt: true,
-      projectsCreated: true,
-      projectsTaken: true,
-      bids: true,
+
+      projectsCreated: {
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          budgetMin: true,
+          budgetMax: true,
+          deadline: true,
+          status: true,
+        },
+      },
+
+      projectsTaken: {
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          budgetMin: true,
+          budgetMax: true,
+          deadline: true,
+          status: true,
+        },
+      },
+
+      bids: {
+        select: {
+          id: true,
+          amount: true,
+          estimatedTime: true,
+          message: true,
+          bidStatus: true,
+          createdAt: true,
+          sellerName: true,
+          projectId: true,
+        },
+      },
     },
   });
 
@@ -75,3 +109,4 @@ export async function getUserDetails(userId: string) {
 
   return user;
 }
+

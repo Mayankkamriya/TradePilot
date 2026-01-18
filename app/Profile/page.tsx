@@ -82,6 +82,8 @@ const response = await fetch('/api/auth/me', {
 
         if (!response.ok) {
           toast.error('Failed to fetch user data');
+          setError('Failed to load profile data');
+          return;
         }
 
         const result: ApiResponse = await response.json();
@@ -616,7 +618,7 @@ const submitCompletion = async (bidId: string, projectId: string) => {
                           {project.title}
                         </h4>
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
-                          {project.status.replace('_', ' ')}
+                          {(project.status ?? 'PENDING').replace('_', ' ')}
                         </span>
                       </div>
                       <p className="text-sm text-gray-600 mb-3 line-clamp-2">
@@ -624,7 +626,7 @@ const submitCompletion = async (bidId: string, projectId: string) => {
                       </p>
                       <div className="flex items-center justify-between text-sm text-gray-500">
                         <span className="font-medium text-green-600">
-                          ₹{project.budgetMin.toLocaleString()} - ₹{project.budgetMax.toLocaleString()}
+                          ₹{Number(project.budgetMin ?? 0).toLocaleString()} - ₹{Number(project.budgetMax ?? 0).toLocaleString()}
                         </span>
                         <span>
                           Deadline: {new Date(project.deadline).toLocaleDateString()}

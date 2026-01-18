@@ -214,7 +214,7 @@ if ( !token) {
                     <div className="mt-3 flex items-center justify-between text-sm text-gray-500">
                       <div className="flex items-center space-x-4">
                         <span>
-                          Budget: ${project.budgetMin.toLocaleString()} - ${project.budgetMax.toLocaleString()}
+                          Budget: ₹{Number(project.budgetMin ?? 0).toLocaleString()} - ₹{Number(project.budgetMax ?? 0).toLocaleString()}
                         </span>
                         <span>
                           Deadline: {new Date(project.deadline).toLocaleDateString()}
